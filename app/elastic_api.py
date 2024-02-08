@@ -50,12 +50,14 @@ class ElasticAPI:
     def submit_data(self):
 
         if not self.client.indices.exists(index=self.elastic_index_name):
-            print("Elastic Index does not exist, trying to create.")           
+            print("Elastic Index does not exist, trying to create.") 
             mapping = {
-                "mapping":{
-                   "properties":{
-                     "ip":{"type":"ip"}
-                   }
+                "mappings": {
+                    "properties": {
+                        "ip": {
+                            "type": "ip" 
+                        }
+                    }
                 }
             }
             self.client.indices.create(index=self.elastic_index_name, body=mapping)
