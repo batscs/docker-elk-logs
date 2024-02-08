@@ -1,0 +1,14 @@
+services:
+  bats-elk-lobx:
+    build: "https://raw.githubusercontent.com/batscs/docker-elk-logs/main/Dockerfile" 
+    image: "batscs/docker-elk-logs"
+    container_name: "bats-elk-logs"
+    restart: unless-stopped
+    environment:
+      - host_name=change_me
+      - elastic_domain=http://elasticsearch:9200
+      - elastic_api_key=change_me
+      - elastic_index_name=sshlogs-0001
+    volumes:
+      - "./data:/app/data"
+      - "/var/log/auth.log:/app/auth.log"
