@@ -48,7 +48,7 @@ host_name = args.host_name
 elastic = ElasticAPI(elastic_domain, elastic_api_key, elastic_index_name, debug=debug, connect=elastic_upload)
 pp = pprint.PrettyPrinter(indent=4)
 
-log_file = "auth.log"
+log_file = "/app/auth.log"
 
 # --------------------------------------------------------------------------------------------------------------------------------
 
