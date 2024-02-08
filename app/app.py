@@ -93,6 +93,7 @@ def analyze_logs(log_file):
             value["@timestamp"] = match1.group(1)
             value["user"] = match1.group(2)
             value["ip"] = match1.group(3)
+            value["geopoint"] = ip_to_geopoint(value["ip"])
             value["port"] = match1.group(4)
             value["type"] = "invalid_user"
             value["host"] = host_name
@@ -101,6 +102,7 @@ def analyze_logs(log_file):
             value["@timestamp"] = match2.group(1)
             value["user"] = match2.group(2)
             value["ip"] = match2.group(3)
+            value["geopoint"] = ip_to_geopoint(value["ip"])
             value["port"] = match2.group(4)
             value["type"] = "invalid_ssh"
             value["host"] = host_name
@@ -109,6 +111,7 @@ def analyze_logs(log_file):
             value["@timestamp"] = match3.group(1)
             value["user"] = match3.group(2)
             value["ip"] = match3.group(3)
+            value["geopoint"] = ip_to_geopoint(value["ip"])
             value["port"] = match3.group(4)
             value["pubkey"] = match3.group(5)
             value["type"] = "valid_pubkey"
@@ -120,6 +123,15 @@ def analyze_logs(log_file):
     
     return result
 
+# --------------------------------------------------------------------------------------------------------------------------------
+
+def ip_to_geopoint(ip_address):
+    request_url = 'https://geolocation-db.com/jsonp/' + ip_address
+    response = requests.get(request_url)
+    result = response.content.decode()
+    result = result.split("(")[1].strip(")")
+    result = json.loads(result)
+    return str(result["latitude"]) + "," + str(result["longitude"])
 
 # --------------------------------------------------------------------------------------------------------------------------------
 
