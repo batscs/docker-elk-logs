@@ -58,7 +58,7 @@ class ElasticAPI:
                             "type": "ip" 
                         },
                         "geopoint": {
-                            "type". "geo_point"
+                            "type": "geo_point"
                         }
                     }
                 }
