@@ -51,6 +51,20 @@ class ElasticAPI:
 
         if not self.client.indices.exists(index=self.elastic_index_name):
             print("Elastic Index does not exist, trying to create.")
+
+            mapping = {
+                "mappings": {
+                    "properties": {
+                        "@timestamp": {
+                          "type": "date"
+                        },
+                        "ip": {
+                          "type": "ip"
+                        }
+                    }
+                }
+            }
+            
             self.client.indices.create(index=self.elastic_index_name)
 
         print(self.elastic_documents)
