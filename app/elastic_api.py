@@ -65,7 +65,7 @@ class ElasticAPI:
                 }
             }
             
-            self.client.indices.create(index=self.elastic_index_name)
+            self.client.indices.create(index=self.elastic_index_name, body=mapping)
 
         print(self.elastic_documents)
 
