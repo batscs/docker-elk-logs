@@ -22,12 +22,11 @@ class ElasticAPI:
         self.elastic_bulk_max_elements = max_elements
 
     # Function to append a processed log to the document for ElasticSearch
-    def append_data(self, field_record, timestamp=""):
+    def append_data(self, field_record):
 
-        if timestamp == "":
+        if "@timestamp" not in field_record:
             timestamp = datetime.now(timezone.utc).isoformat()
-
-        field_record["@timestamp"] = timestamp
+            field_record["@timestamp"] = timestamp
 
         action = {
             "_index": self.elastic_index_name,
@@ -57,7 +56,6 @@ class ElasticAPI:
         print(self.elastic_documents)
 
         response = helpers.bulk(self.client, self.elastic_documents)
-        print(response)
 
         # Clear Documents
         self.elastic_documents = []
