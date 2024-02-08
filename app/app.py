@@ -2,6 +2,8 @@ import argparse
 import pprint
 import re as regex
 from elastic_api import ElasticAPI
+import requests
+import json
 
 # --------------------------------------------------------------------------------------------------------------------------------
 
