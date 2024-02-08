@@ -115,6 +115,9 @@ def analyze_logs(log_file):
             value["host"] = host_name
             result.append(value)
 
+    # Clear Content of File (old ssh auth logs)
+    open(log_file, "w").close()
+    
     return result
 
 
