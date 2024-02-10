@@ -1,6 +1,7 @@
 # docker-elk-logs
 
 ## Introduction
+![image](https://github.com/batscs/docker-elk-logs/assets/31670615/f964db21-f676-4634-8ae5-961c438f9228)
 
 ## Requirement
 ```
